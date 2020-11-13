@@ -1,9 +1,12 @@
 ﻿@page
 @model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
 
 @section Styles
 {
-    <link rel="stylesheet" href="~/css/login.css"/>
+    <link rel="stylesheet" href="~/css/login.css" />
 }
 
 <div class="container">
@@ -14,6 +17,7 @@
                     <h5 class="card-title text-center">Sign In</h5>
                     <section>
                         <form class="form-signin" id="account" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-label-group">
                                 <input type="email" asp-for="Input.Email" class="form-control" placeholder="Email address" required autofocus>
                                 <label asp-for="Input.Email">Email address</label>
@@ -45,7 +49,6 @@
                             </div>
                         </form>
                     </section>
-
                 </div>
             </div>
         </div>
@@ -53,5 +56,5 @@
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial"/>
+    <partial name="_ValidationScriptsPartial" />
 }
