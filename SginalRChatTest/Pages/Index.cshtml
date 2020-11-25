@@ -1,14 +1,28 @@
 ﻿@page
 @section Styles
 {
-    <link rel="stylesheet" href="~/css/chat.css">
-    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/chat.css?=1.74">
 }
 
-<div class="container py-5 px-2">
-    <div class="row rounded-lg overflow-hidden shadow">
-        <!-- Chat Box-->
-        <div class="col-12 px-0">
+<div class="container py-5 d-flex justify-content-center">
+    <div class="chat-wrap row rounded-lg overflow-hidden">
+        <!-- Active user box -->
+        <div id="wholeActiveUsersPanel" class="col-1 col-sm-2 col-md-3 col-xl-3 rounded-lg px-0" onclick="changeBox()">
+            <div id="activeUsersPanel" class="px-1 py-1 bg-white">
+                <label class="listToggle">
+                    <input id="listCheckbox" type="checkbox" />
+                    <span class="btn btn-link fas fa-arrow-right" id="toggleActiveUsersList" aria-hidden="true"></span>
+                </label>
+                <div id="usersBox" class="px-3 py-1">
+                    <div class="py-2 text-center"><span class="h5">Active users:</span></div>
+                    <div class="row">
+                        <ul id="activeUsersList" class="active-users-list mx-auto"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Chat Box -->
+        <div class="col-11 col-sm-10 col-md-9 col-xl-9 px-0 shadow float-right typing-messages-box">
             <div id="chat-window" class="px-5 py-5 chat-box bg-white">
                 <div class="row">
                     <ul id="messagesList" style="list-style: none;"></ul>
@@ -17,7 +31,7 @@
             <!-- Typing area -->
             <form action="#" class="bg-light">
                 <div class="input-group">
-                <input type="text" placeholder="Type a message" id="messageInput" required="" aria-describedby="sendButton" class="form-control rounded-0 border-0 py-4 bg-light">
+                    <input type="text" placeholder="Type a message" id="messageInput" required="" aria-describedby="sendButton" class="form-control rounded-0 border-0 py-4 bg-light">
                     <div class="input-group-append">
                         <button id="sendButton" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                     </div>
@@ -31,6 +45,8 @@
 {
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/chat.js"></script>
+    <script src="~/lib/anime-master/anime.min.js"></script>
+    <script src="~/js/activeUserPanel.js?=1.74"></script>
     <script>
         var currentUser = "@HttpContext.User.Identity.Name";
     </script>
